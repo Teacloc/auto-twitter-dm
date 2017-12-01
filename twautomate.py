@@ -19,7 +19,7 @@ def get_new_followers(username):
     auth.set_access_token(access_token, access_token_secret)
     api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
     ids = []
-    for page in tweepy.Cursor(api.followers_ids, screen_name=username, count=200).pages():
+    for page in tweepy.Cursor(api.followers_ids, screen_name=username, count=5000).pages():
         ids.extend(page)
     print(len(ids))
     return ids
