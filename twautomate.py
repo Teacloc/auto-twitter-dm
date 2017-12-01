@@ -52,13 +52,13 @@ def save_followers(username, followers_list):
 
 def get_username(ids):
     auth.set_access_token(access_token, access_token_secret)
-    api = tweepy.API(auth)
+    api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
     user_data = user = api.get_user(ids)
     return user_data.name
 
 def send_direct_message(to_userid):
     auth.set_access_token(access_token, access_token_secret)
-    api = tweepy.API(auth)
+    api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
     first_name = get_username(to_userid).split(' ')[0]
     dm_text = generate_dm_text(first_name)
     api.send_direct_message(to_userid, text=dm_text)
